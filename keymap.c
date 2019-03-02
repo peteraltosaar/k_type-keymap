@@ -4,8 +4,14 @@
 
 #define _QW 0
 #define _ARROW 1
+#define PW 2
 
 #define ARROW MO(_ARROW)
+
+enum custom_keycodes {
+  D_EMAIL = SAFE_RANGE,
+  A_EMAIL
+};
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QW] = KEYMAP(
@@ -18,7 +24,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ARROW] = KEYMAP(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MPLY, KC_MNXT, KC_VOLU, \
-      _______, _______, _______, _______, _______, _______, _______, _______,   KC_UP, _______, _______, _______, _______, _______, KC_MSTP, KC_MPRV, KC_VOLD, \
+      _______, _______, _______, _______, _______, _______, _______, D_EMAIL,   KC_UP, A_EMAIL, _______, _______, _______, _______, KC_MSTP, KC_MPRV, KC_VOLD, \
       _______, _______, _______, _______, _______, _______, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, \
       _______, _______, _______, _______, _______, _______,  KC_END, _______, _______, _______, _______, _______,                            KC_PGUP, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            KC_HOME, KC_PGDN, KC_END),
@@ -33,3 +39,27 @@ void matrix_init_user(void) {
 void matrix_scan_user(void) {
 
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case PW:
+      if (record->event.pressed) {
+        SEND_STRING("PW");
+      }
+      return false;
+      break;
+    case D_EMAIL:
+      if (record->event.pressed) {
+        SEND_STRING("x#");
+      }
+      return false;
+      break;
+    case A_EMAIL:
+      if (record->event.pressed) {
+        SEND_STRING("xE");
+      }
+      return false;
+      break;
+  }
+  return true;
+}
