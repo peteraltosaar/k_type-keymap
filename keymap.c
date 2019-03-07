@@ -4,13 +4,16 @@
 
 #define _QW 0
 #define _ARROW 1
-#define PW 2
+#define _INTELLIJ 2
 
 #define ARROW MO(_ARROW)
+#define INTJ MO(_INTELLIJ)
+#define FNDFILE LSFT(LCTL(KC_N))
 
 enum custom_keycodes {
   D_EMAIL = SAFE_RANGE,
-  A_EMAIL
+  A_EMAIL,
+  PW
 };
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -20,7 +23,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN, \
       LT(ARROW, KC_ESC), KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT, \
       KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,                            KC_UP, \
-      KC_LCTL, KC_LALT, KC_LGUI,          KC_SPC,                    KC_RALT, KC_RGUI, MO(_ARROW), KC_RCTL,                            KC_LEFT, KC_DOWN, KC_RGHT),
+      KC_LCTL, KC_LALT, KC_LGUI,          KC_SPC,                    KC_RALT, KC_RGUI,   INTJ,  KC_RCTL,                            KC_LEFT, KC_DOWN, KC_RGHT),
+
     [_ARROW] = KEYMAP(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MPLY, KC_MNXT, KC_VOLU, \
@@ -28,6 +32,14 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, \
       _______, _______, _______, _______, _______, _______,  KC_END, _______, _______, _______, _______, _______,                            KC_PGUP, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            KC_HOME, KC_PGDN, KC_END),
+
+    [_INTELLIJ] = KEYMAP(
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______, FNDFILE, _______, _______, _______, _______, _______,                            _______, \
+      _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, _______, _______),
 };
 
 // Runs just one time when the keyboard initializes.
