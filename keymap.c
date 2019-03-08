@@ -14,10 +14,32 @@
 #define INTJ_F LT(INTJ, KC_F)
 #define INTJ_J LT(INTJ, KC_J)
 
+// IntelliJ Shortcuts
 #define FNDFILE LSFT(LCTL(KC_N))
 #define REFACTR LCTL(LALT(LSFT(KC_T)))
 #define CLOSE LCTL(KC_F4)
 #define HIDWINS LCTL(LSFT(KC_F12))
+#define RUNTGTS LSFT(LALT(KC_F10))
+#define RERUN LCTL(KC_F5)
+#define EXECUTE LCTL(LSFT(KC_F10))
+#define SYMBOL LSFT(LCTL(LALT(KC_N)))
+#define DEBUG LCTL(LSFT(KC_F9))
+#define END LCTL(KC_F2)
+#define CREATE LALT(KC_INS)
+#define FIND LCTL(LSFT(KC_F))
+#define GO2TEST LCTL(LSFT(KC_T))
+#define GIT LALT(KC_GRV)
+#define HIERARC LCTL(LALT(KC_H))
+#define USAGES LALT(KC_F7)
+#define MENU LALT(LSFT(KC_SCLN))
+#define BACK LCTL(LALT(KC_LEFT))
+#define FORWARD LCTL(LALT(KC_RGHT))
+#define PREVMTD LALT(KC_UP)
+#define NEXTMTD LALT(KC_DOWN)
+#define FONT_DN LSFT(LCTL(LALT(KC_MINS)))
+#define FONT_UP LSFT(LCTL(LALT(KC_EQL)))
+#define FONTRES LSFT(LCTL(LALT(KC_SCLN)))
+#define INFO LCTL(KC_F1)
 
 enum custom_keycodes {
   D_EMAIL = SAFE_RANGE,
@@ -45,9 +67,9 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_INTELLIJ] = KEYMAP(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-      _______,   CLOSE, _______, _______, REFACTR, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-      HIDWINS, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______, _______, _______, _______, FNDFILE, _______, _______, _______, _______, _______,                            _______, \
+      _______,   CLOSE, _______,     END, REFACTR, GO2TEST, _______, _______, PREVMTD, _______, _______, _______, _______, _______, _______, _______, _______, \
+      HIDWINS, RUNTGTS,  SYMBOL,   DEBUG,    FIND,     GIT, HIERARC,    BACK, NEXTMTD, FORWARD, FONTRES, _______, _______, \
+      _______,   RERUN, EXECUTE,  CREATE, _______, _______, FNDFILE,    MENU, FONT_DN, FONT_UP,    INFO, _______,                            _______, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, _______, _______),
 };
 
