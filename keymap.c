@@ -11,9 +11,13 @@
 
 #define ARR_ESC LT(ARROW, KC_ESC)
 #define INTJ_Z LT(INTJ, KC_Z)
+#define INTJ_F LT(INTJ, KC_F)
+#define INTJ_J LT(INTJ, KC_J)
 
 #define FNDFILE LSFT(LCTL(KC_N))
 #define REFACTR LCTL(LALT(LSFT(KC_T)))
+#define CLOSE LCTL(KC_F4)
+#define HIDWINS LCTL(LSFT(KC_F12))
 
 enum custom_keycodes {
   D_EMAIL = SAFE_RANGE,
@@ -26,7 +30,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,           KC_PSCR, KC_SLCK, KC_PAUS, \
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_INS,  KC_HOME, KC_PGUP, \
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN, \
-      ARR_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT, \
+      ARR_ESC, KC_A,    KC_S,    KC_D,    INTJ_F,    KC_G,    KC_H,    INTJ_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT, \
       KC_LSFT, INTJ_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,                            KC_UP, \
       KC_LCTL, KC_LALT, KC_LGUI,          KC_SPC,                    KC_RALT, KC_RGUI,   INTJ,  KC_RCTL,                            KC_LEFT, KC_DOWN, KC_RGHT),
 
@@ -41,8 +45,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_INTELLIJ] = KEYMAP(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______, _______, REFACTR, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______,   CLOSE, _______, _______, REFACTR, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+      HIDWINS, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
       _______, _______, _______, _______, _______, _______, FNDFILE, _______, _______, _______, _______, _______,                            _______, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, _______, _______),
 };
