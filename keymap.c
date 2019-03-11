@@ -41,6 +41,8 @@
 #define FONTRES LSFT(LCTL(LALT(KC_SCLN)))
 #define INFO LCTL(KC_F1)
 #define OUTLINE LCTL(KC_F12)
+#define PRVCHNG LCTL(LALT(LSFT(KC_UP)))
+#define NXTCHNG LCTL(LALT(LSFT(KC_DOWN)))
 
 enum custom_keycodes {
   D_EMAIL = SAFE_RANGE,
@@ -70,8 +72,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
       _______,   CLOSE, _______,     END, REFACTR, GO2TEST, _______, _______, PREVMTD, OUTLINE, _______, _______, _______, _______, _______, _______, _______, \
       HIDWINS, RUNTGTS,  SYMBOL,   DEBUG,    FIND,     GIT, HIERARC,    BACK, NEXTMTD, FORWARD, FONTRES, _______, _______, \
-      _______,   RERUN, EXECUTE,  CREATE, _______, _______, FNDFILE,    MENU, FONT_DN, FONT_UP,    INFO, _______,                            _______, \
-      _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, _______, _______),
+      _______,   RERUN, EXECUTE,  CREATE, _______, _______, FNDFILE,    MENU, FONT_DN, FONT_UP,    INFO, _______,                            PRVCHNG, \
+      _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, NXTCHNG, _______),
 };
 
 // Runs just one time when the keyboard initializes.
