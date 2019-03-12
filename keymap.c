@@ -64,7 +64,8 @@ enum custom_keycodes {
   MAIL,
   CALENDR,
   ITERM,
-  PLAN
+  PLAN,
+  VMWARE
 };
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -97,7 +98,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
       _______, _______, _______,    MAIL, _______, TODOIST, _______,  UNANET,   ITERM, ONENOTE,    PLAN, _______, _______, _______, _______, _______, _______, \
       _______, _______,   SLACK, _______, FIREFOX,  CHROME, _______, _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______, CALENDR, _______, _______, _______, SPOTIFY, _______, _______, _______, _______,                            _______, \
+      _______, _______, _______, CALENDR,  VMWARE, _______, _______, SPOTIFY, _______, _______, _______, _______,                            _______, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, _______, _______),
 };
 
@@ -210,6 +211,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
         delay();
         SEND_STRING("plan" SS_TAP(X_ENTER));
+      }
+      return false;
+    case VMWARE:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        delay();
+        SEND_STRING("vmware" SS_TAP(X_ENTER));
       }
       return false;
   }
