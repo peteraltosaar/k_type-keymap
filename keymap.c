@@ -5,15 +5,19 @@
 #define _QW 0
 #define _ARROW 1
 #define _INTELLIJ 2
+#define _APPS 3
 
 #define ARROW MO(_ARROW)
 #define INTJ MO(_INTELLIJ)
+#define APPS MO(_APPS)
 
 #define ARR_ESC LT(ARROW, KC_ESC)
 #define INTJ_Z LT(INTJ, KC_Z)
 #define INTJ_F LT(INTJ, KC_F)
 #define INTJ_J LT(INTJ, KC_J)
+#define SPC_APP LT(APPS, KC_SPC)
 #define LOCKSCR LGUI(LCTL(KC_Q))
+#define SWTCSCR LGUI(LSFT(LCTL(KC_G)))
 
 // IntelliJ Shortcuts
 #define FNDFILE LSFT(LCTL(KC_N))
@@ -49,7 +53,18 @@
 enum custom_keycodes {
   D_EMAIL = SAFE_RANGE,
   A_EMAIL,
-  PW
+  PW,
+  SLACK,
+  TODOIST,
+  FIREFOX,
+  CHROME,
+  UNANET,
+  ONENOTE,
+  SPOTIFY,
+  MAIL,
+  CALENDR,
+  ITERM,
+  PLAN
 };
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -59,13 +74,13 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN, \
       ARR_ESC, KC_A,    KC_S,    KC_D,    INTJ_F,    KC_G,    KC_H,    INTJ_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT, \
       KC_LSFT, INTJ_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,                            KC_UP, \
-      KC_LCTL, KC_LALT, KC_LGUI,          KC_SPC,                    KC_RALT, KC_RGUI,   INTJ,  KC_RCTL,                            KC_LEFT, KC_DOWN, KC_RGHT),
+      KC_LCTL, KC_LALT, KC_LGUI,          SPC_APP,                    KC_RALT, KC_RGUI,   INTJ,  KC_RCTL,                            KC_LEFT, KC_DOWN, KC_RGHT),
 
     [_ARROW] = KEYMAP(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______,   RESET, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MPLY, KC_MNXT, KC_VOLU, \
       _______, _______, _______, _______, _______, _______, _______, D_EMAIL,   KC_UP, A_EMAIL, _______, _______, _______, _______, KC_MSTP, KC_MPRV, KC_VOLD, \
-      _______, _______, _______, _______, _______, _______, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, \
+      _______, _______, _______, _______, _______, SWTCSCR, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, \
       _______, _______, _______, _______, _______, _______,  KC_END, _______, _______, _______, _______, _______,                            KC_PGUP, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            KC_HOME, KC_PGDN, KC_END),
 
@@ -76,6 +91,14 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       HIDWINS, RUNTGTS,  SYMBOL,   DEBUG,    FIND,     GIT, HIERARC,    BACK, NEXTMTD, FORWARD, FONTRES, _______, _______, \
       _______,   RERUN, EXECUTE,  CREATE, EXT_VAR, _______, FNDFILE,    MENU, FONT_DN, FONT_UP,    INFO, _______,                            PRVCHNG, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, NXTCHNG, _______),
+
+    [_APPS] = KEYMAP(
+                _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______,    MAIL, _______, TODOIST, _______,  UNANET,   ITERM, ONENOTE,    PLAN, _______, _______, _______, _______, _______, _______, \
+      _______, _______,   SLACK, _______, FIREFOX,  CHROME, _______, _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______, CALENDR, _______, _______, _______, SPOTIFY, _______, _______, _______, _______,                            _______, \
+      _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, _______, _______),
 };
 
 // Runs just one time when the keyboard initializes.
@@ -88,6 +111,13 @@ void matrix_scan_user(void) {
 
 };
 
+void delay(void) {
+  int dummy = 0;
+  for (int i = 0; i < 1000; i++) {
+    dummy++;
+  }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case PW:
@@ -95,19 +125,93 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("PW");
       }
       return false;
-      break;
     case D_EMAIL:
       if (record->event.pressed) {
         SEND_STRING("x#");
       }
       return false;
-      break;
     case A_EMAIL:
       if (record->event.pressed) {
         SEND_STRING("xE");
       }
       return false;
-      break;
+    case SLACK:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        delay();
+        SEND_STRING("slack" SS_TAP(X_ENTER));
+      }
+      return false;
+    case CALENDR:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        delay();
+        SEND_STRING("calendar" SS_TAP(X_ENTER));
+      }
+      return false;
+    case FIREFOX:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        delay();
+        SEND_STRING("firefox" SS_TAP(X_ENTER));
+      }
+      return false;
+    case MAIL:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        delay();
+        SEND_STRING("mail" SS_TAP(X_ENTER));
+      }
+      return false;
+    case TODOIST:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        delay();
+        SEND_STRING("todoist-native" SS_TAP(X_ENTER));
+      }
+      return false;
+    case CHROME:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        delay();
+        SEND_STRING("chrome" SS_TAP(X_ENTER));
+      }
+      return false;
+    case UNANET:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        delay();
+        SEND_STRING("unanet" SS_TAP(X_ENTER));
+      }
+      return false;
+    case SPOTIFY:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        delay();
+        SEND_STRING("spotify" SS_TAP(X_ENTER));
+      }
+      return false;
+    case ITERM:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        delay();
+        SEND_STRING("iterm" SS_TAP(X_ENTER));
+      }
+      return false;
+    case ONENOTE:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        delay();
+        SEND_STRING("onenote" SS_TAP(X_ENTER));
+      }
+      return false;
+    case PLAN:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        delay();
+        SEND_STRING("plan" SS_TAP(X_ENTER));
+      }
+      return false;
   }
   return true;
 }
