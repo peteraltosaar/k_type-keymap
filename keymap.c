@@ -13,6 +13,7 @@
 #define INTJ_Z LT(INTJ, KC_Z)
 #define INTJ_F LT(INTJ, KC_F)
 #define INTJ_J LT(INTJ, KC_J)
+#define LOCKSCR LGUI(LCTL(KC_Q))
 
 // IntelliJ Shortcuts
 #define FNDFILE LSFT(LCTL(KC_N))
@@ -43,6 +44,7 @@
 #define OUTLINE LCTL(KC_F12)
 #define PRVCHNG LCTL(LALT(LSFT(KC_UP)))
 #define NXTCHNG LCTL(LALT(LSFT(KC_DOWN)))
+#define EXT_VAR LCTL(LALT(KC_V))
 
 enum custom_keycodes {
   D_EMAIL = SAFE_RANGE,
@@ -52,7 +54,7 @@ enum custom_keycodes {
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QW] = KEYMAP(
-      KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,           KC_PSCR, KC_SLCK, KC_PAUS, \
+      KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,           LOCKSCR, KC_SLCK, KC_PAUS, \
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_INS,  KC_HOME, KC_PGUP, \
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN, \
       ARR_ESC, KC_A,    KC_S,    KC_D,    INTJ_F,    KC_G,    KC_H,    INTJ_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT, \
@@ -72,7 +74,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
       _______,   CLOSE, _______,     END, REFACTR, GO2TEST, _______, _______, PREVMTD, OUTLINE, _______, _______, _______, _______, _______, _______, _______, \
       HIDWINS, RUNTGTS,  SYMBOL,   DEBUG,    FIND,     GIT, HIERARC,    BACK, NEXTMTD, FORWARD, FONTRES, _______, _______, \
-      _______,   RERUN, EXECUTE,  CREATE, _______, _______, FNDFILE,    MENU, FONT_DN, FONT_UP,    INFO, _______,                            PRVCHNG, \
+      _______,   RERUN, EXECUTE,  CREATE, EXT_VAR, _______, FNDFILE,    MENU, FONT_DN, FONT_UP,    INFO, _______,                            PRVCHNG, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, NXTCHNG, _______),
 };
 
