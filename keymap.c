@@ -24,6 +24,8 @@
 #define GUIRGHT LGUI(KC_RGHT)
 #define CHARS LGUI(LCTL(KC_SPC))
 #define ADDTODO LGUI(LSFT(KC_A))
+#define DW_LEFT LALT(KC_BSPC)
+#define DW_RGHT LALT(KC_DEL)
 
 // IntelliJ Shortcuts
 #define FNDFILE LSFT(LCTL(KC_N))
@@ -86,8 +88,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ARROW] = KEYMAP(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______,      PW, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MPLY, KC_MNXT, KC_VOLU, \
-      _______, _______, _______, _______, _______, _______, _______, D_EMAIL,   KC_UP, A_EMAIL, _______, _______, _______, _______, KC_MSTP, KC_MPRV, KC_VOLD, \
-      _______, _______, _______, _______, _______, GUILEFT, ALTLEFT, KC_LEFT, KC_DOWN, KC_RGHT, ALTRGHT, GUIRGHT, _______, \
+      _______, _______, DW_LEFT, _______, _______, _______, _______, D_EMAIL,   KC_UP, A_EMAIL, _______, _______, _______, _______, KC_MSTP, KC_MPRV, KC_VOLD, \
+      _______, _______, _______, DW_RGHT, _______, GUILEFT, ALTLEFT, KC_LEFT, KC_DOWN, KC_RGHT, ALTRGHT, GUIRGHT, _______, \
       _______, _______, _______, _______, _______, KC_HOME,  KC_END, SWTCSCR, _______, _______, _______, _______,                            KC_PGUP, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            KC_HOME, KC_PGDN, KC_END),
 
