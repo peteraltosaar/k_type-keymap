@@ -88,8 +88,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ARROW] = KEYMAP(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______,      PW, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MPLY, KC_MNXT, KC_VOLU, \
-      _______, _______, DW_LEFT, _______, _______, _______, _______, D_EMAIL,   KC_UP, A_EMAIL, _______, _______, _______, _______, KC_MSTP, KC_MPRV, KC_VOLD, \
-      _______, _______, _______, DW_RGHT, _______, GUILEFT, ALTLEFT, KC_LEFT, KC_DOWN, KC_RGHT, ALTRGHT, GUIRGHT, _______, \
+      _______, _______, _______,  KC_ENT, _______, _______, _______, D_EMAIL,   KC_UP, A_EMAIL, _______, _______, _______, _______, KC_MSTP, KC_MPRV, KC_VOLD, \
+      _______, DW_LEFT, KC_BSPC,  KC_DEL, DW_RGHT, GUILEFT, ALTLEFT, KC_LEFT, KC_DOWN, KC_RGHT, ALTRGHT, GUIRGHT, _______, \
       _______, _______, _______, _______, _______, KC_HOME,  KC_END, SWTCSCR, _______, _______, _______, _______,                            KC_PGUP, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            KC_HOME, KC_PGDN, KC_END),
 
