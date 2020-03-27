@@ -62,17 +62,15 @@ enum custom_keycodes {
   D_EMAIL = SAFE_RANGE,
   A_EMAIL,
   PW,
-  SLACK,
-  TODOIST,
+  BRAVE,
   FIREFOX,
-  CHROME,
-  UNANET,
-  ONENOTE,
-  SPOTIFY,
-  MAIL,
-  CALENDR,
   ITERM,
-  PLAN,
+  MAIL,
+  NOTION,
+  SIGNAL,
+  SPOTIFY,
+  TEAMS,
+  TODOIST,
   VMWARE
 };
 
@@ -102,11 +100,11 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, NXTCHNG, _______),
 
     [_APPS] = KEYMAP(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______,   RESET, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______,    MAIL, _______, TODOIST, _______,  UNANET,   ITERM, ONENOTE,    PLAN, _______, _______, _______, _______, _______, _______, \
-      _______, _______,   SLACK, _______, FIREFOX,  CHROME, _______, _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______, CALENDR,  VMWARE, _______, _______, SPOTIFY, _______, _______, _______, _______,                            _______, \
+      _______, _______, _______,    MAIL, _______, TODOIST, _______, FIREFOX,   ITERM, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______, _______,  SIGNAL, _______, _______, _______, _______, KC_MINS, _______, _______, _______, _______, _______, \
+      _______, _______, _______,   TEAMS,  VMWARE,   BRAVE,  NOTION, SPOTIFY, _______, _______, _______, _______,                            _______, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, _______, _______),
 };
 
@@ -144,18 +142,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("xE");
       }
       return false;
-    case SLACK:
+    case BRAVE:
       if (record->event.pressed) {
         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
         delay();
-        SEND_STRING("slack" SS_TAP(X_ENTER));
-      }
-      return false;
-    case CALENDR:
-      if (record->event.pressed) {
-        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
-        delay();
-        SEND_STRING("calendar" SS_TAP(X_ENTER));
+        SEND_STRING("brave" SS_TAP(X_ENTER));
       }
       return false;
     case FIREFOX:
@@ -165,6 +156,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("firefox" SS_TAP(X_ENTER));
       }
       return false;
+    case ITERM:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        delay();
+        SEND_STRING("iterm" SS_TAP(X_ENTER));
+      }
+      return false;
     case MAIL:
       if (record->event.pressed) {
         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
@@ -172,25 +170,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("mail" SS_TAP(X_ENTER));
       }
       return false;
-    case TODOIST:
+    case NOTION:
       if (record->event.pressed) {
         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
         delay();
-        SEND_STRING("todoist-native" SS_TAP(X_ENTER));
+        SEND_STRING("notion" SS_TAP(X_ENTER));
       }
       return false;
-    case CHROME:
+    case SIGNAL:
       if (record->event.pressed) {
         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
         delay();
-        SEND_STRING("chrome" SS_TAP(X_ENTER));
-      }
-      return false;
-    case UNANET:
-      if (record->event.pressed) {
-        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
-        delay();
-        SEND_STRING("unanet" SS_TAP(X_ENTER));
+        SEND_STRING("signal" SS_TAP(X_ENTER));
       }
       return false;
     case SPOTIFY:
@@ -200,25 +191,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("spotify" SS_TAP(X_ENTER));
       }
       return false;
-    case ITERM:
+    case TEAMS:
       if (record->event.pressed) {
         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
         delay();
-        SEND_STRING("iterm" SS_TAP(X_ENTER));
+        SEND_STRING("teams" SS_TAP(X_ENTER));
       }
       return false;
-    case ONENOTE:
+    case TODOIST:
       if (record->event.pressed) {
         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
         delay();
-        SEND_STRING("onenote" SS_TAP(X_ENTER));
-      }
-      return false;
-    case PLAN:
-      if (record->event.pressed) {
-        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
-        delay();
-        SEND_STRING("plan" SS_TAP(X_ENTER));
+        SEND_STRING("todoist" SS_TAP(X_ENTER));
       }
       return false;
     case VMWARE:
