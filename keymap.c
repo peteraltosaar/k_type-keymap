@@ -58,6 +58,11 @@
 #define NXTCHNG LCTL(LALT(LSFT(KC_DOWN)))
 #define EXT_VAR LCTL(LALT(KC_V))
 
+// Media Keys
+
+#define VOLUP KC__VOLUP
+#define VOLDOWN KC__VOLDOWN
+
 enum custom_keycodes {
   D_EMAIL = SAFE_RANGE,
   A_EMAIL,
@@ -85,8 +90,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_ARROW] = KEYMAP(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______,      PW, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLU, KC_MPLY, KC_MSTP, \
-      _______, _______, _______,  KC_ENT, _______, _______, _______, D_EMAIL,   KC_UP, A_EMAIL, _______, _______, _______, _______, KC_VOLD, KC_MPRV, KC_MNXT, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   VOLUP, KC_MPLY, KC_MSTP, \
+      _______, _______, _______,  KC_ENT, _______, _______, _______, D_EMAIL,   KC_UP, A_EMAIL, _______, _______, _______, _______, VOLDOWN, KC_MRWD, KC_MFFD, \
       _______, DW_LEFT, KC_BSPC,  KC_DEL, DW_RGHT, GUILEFT, ALTLEFT, KC_LEFT, KC_DOWN, KC_RGHT, ALTRGHT, GUIRGHT, _______, \
       _______, _______, _______, _______, _______, KC_HOME,  KC_END, SWTCSCR, _______, _______, _______, _______,                            KC_PGUP, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            KC_HOME, KC_PGDN, KC_END),
