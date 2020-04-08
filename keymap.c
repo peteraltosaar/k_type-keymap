@@ -72,6 +72,9 @@
 #define VOLUP KC__VOLUP
 #define VOLDOWN KC__VOLDOWN
 
+#define ALT_UP LALT(KC_UP)
+#define ALT_DWN LALT(KC_DOWN)
+
 enum custom_keycodes {
   D_EMAIL = SAFE_RANGE,
   A_EMAIL,
@@ -100,10 +103,10 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_ARROW] = KEYMAP(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______,      PW, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   VOLUP, KC_MPLY, KC_MSTP, \
+      _______, _______, _______, _______, _______, _______, _______, _______,  ALT_UP,  ALT_UP, _______, _______, _______, _______,   VOLUP, KC_MPLY, KC_MSTP, \
       _______, _______, _______,  KC_ENT, _______, _______, _______, D_EMAIL,   KC_UP, A_EMAIL, _______, _______, _______, _______, VOLDOWN, KC_MRWD, KC_MFFD, \
-      _______, DW_LEFT, KC_BSPC,  KC_DEL, DW_RGHT, GUILEFT, ALTLEFT, KC_LEFT, KC_DOWN, KC_RGHT, ALTRGHT, GUIRGHT, _______, \
-      _______, _______, _______, _______, _______, KC_HOME,  KC_END, SWTCSCR, _______, _______, _______, _______,                            KC_PGUP, \
+      ARR_ESC, DW_LEFT, KC_BSPC,  KC_DEL, DW_RGHT, GUILEFT, ALTLEFT, KC_LEFT, KC_DOWN, KC_RGHT, ALTRGHT, GUIRGHT, _______, \
+      _______, _______, _______, _______, _______, KC_HOME,  KC_END, ALT_DWN, ALT_DWN, SWTCSCR, _______, _______,                            KC_PGUP, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            KC_HOME, KC_PGDN, KC_END),
 
     [_INTELLIJ] = KEYMAP(
