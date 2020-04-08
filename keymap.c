@@ -66,6 +66,28 @@
 #define PRVCHNG LCTL(LALT(LSFT(KC_UP)))
 #define NXTCHNG LCTL(LALT(LSFT(KC_DOWN)))
 #define EXT_VAR LCTL(LALT(KC_V))
+// Bookmarks
+#define SHOW_BM LSFT(KC_F11)
+#define GOTOBM0 LCTL(KC_0)
+#define GOTOBM1 LCTL(KC_1)
+#define GOTOBM2 LCTL(KC_2)
+#define GOTOBM3 LCTL(KC_3)
+#define GOTOBM4 LCTL(KC_4)
+#define GOTOBM5 LCTL(KC_5)
+#define GOTOBM6 LCTL(KC_6)
+#define GOTOBM7 LCTL(KC_7)
+#define GOTOBM8 LCTL(KC_8)
+#define GOTOBM9 LCTL(KC_9)
+#define SET_BM0 LCTL(LSFT(LALT(KC_0)))
+#define SET_BM1 LCTL(LSFT(LALT(KC_1)))
+#define SET_BM2 LCTL(LSFT(LALT(KC_2)))
+#define SET_BM3 LCTL(LSFT(LALT(KC_3)))
+#define SET_BM4 LCTL(LSFT(LALT(KC_4)))
+#define SET_BM5 LCTL(LSFT(LALT(KC_5)))
+#define SET_BM6 LCTL(LSFT(LALT(KC_6)))
+#define SET_BM7 LCTL(LSFT(LALT(KC_7)))
+#define SET_BM8 LCTL(LSFT(LALT(KC_8)))
+#define SET_BM9 LCTL(LSFT(LALT(KC_9)))
 
 // Media Keys
 
@@ -110,11 +132,11 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            KC_HOME, KC_PGDN, KC_END),
 
     [_INTELLIJ] = KEYMAP(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______, SET_BM1, SET_BM2, SET_BM3, SET_BM4, SET_BM5, SET_BM6, SET_BM7, SET_BM8, SET_BM9, SET_BM0, _______, _______,          _______, _______, _______, \
+      _______, GOTOBM1, GOTOBM2, GOTOBM3, GOTOBM4, GOTOBM5, GOTOBM6, GOTOBM7, GOTOBM8, GOTOBM9, GOTOBM0, _______, _______, _______, _______, _______, _______, \
       _______,   CLOSE, _______,     END, REFACTR, GO2TEST, _______, _______, PREVMTD, OUTLINE, _______, _______, _______, _______, _______, _______, _______, \
       HIDWINS, RUNTGTS,  SYMBOL,   DEBUG,    FIND,     GIT, HIERARC,    BACK, NEXTMTD, FORWARD, FONTRES, _______, _______, \
-      _______,  INTJ_Z, EXECUTE,  CREATE, EXT_VAR, _______, FNDFILE,    MENU, FONT_DN, FONT_UP,    INFO, _______,                            PRVCHNG, \
+      _______,  INTJ_Z, EXECUTE,  CREATE, EXT_VAR, SHOW_BM, FNDFILE,    MENU, FONT_DN, FONT_UP,    INFO, _______,                            PRVCHNG, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, NXTCHNG, _______),
 
     [_APPS] = KEYMAP(
