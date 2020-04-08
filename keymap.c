@@ -33,6 +33,9 @@
 #define C_LEFT LCTL(KC_LEFT)
 #define C_RIGHT LCTL(KC_RIGHT)
 
+// App-Specific Shortcuts
+#define MUTE_MT LGUI(LSFT(KC_M)) // Mute/unmute in Microsoft Teams
+
 // IntelliJ Shortcuts
 #define FNDFILE LSFT(LCTL(KC_N))
 #define REFACTR LCTL(LALT(LSFT(KC_T)))
@@ -82,7 +85,8 @@ enum custom_keycodes {
   SPOTIFY,
   TEAMS,
   TODOIST,
-  VMWARE
+  VMWARE,
+  MUTECHT
 };
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -212,6 +216,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
         SEND_STRING(SS_DELAY(200) "vmware" SS_TAP(X_ENTER));
+      }
+      return false;
+    case MUTECHT:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        SEND_STRING(SS_DELAY(200) "teams" SS_TAP(X_ENTER));
+        SEND_STRING(SS_DELAY(200) SS_LGUI(SS_LSFT("m")));
+        SEND_STRING(SS_DELAY(200) SS_LGUI(SS_TAP(X_TAB)));
       }
       return false;
   }
