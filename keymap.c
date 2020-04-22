@@ -97,6 +97,10 @@
 #define ALT_UP LALT(KC_UP)
 #define ALT_DWN LALT(KC_DOWN)
 
+#define FULL_SCREEN "g"
+#define LEFT_HALF "f"
+#define RIGHT_HALF "h"
+
 enum custom_keycodes {
   D_EMAIL = SAFE_RANGE,
   A_EMAIL,
@@ -111,7 +115,9 @@ enum custom_keycodes {
   TEAMS,
   TODOIST,
   VMWARE,
-  MUTECHT
+  MUTECHT,
+  TO_MNTR,
+  TO_LPTP
 };
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -140,7 +146,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, NXTCHNG, _______),
 
     [_APPS] = KEYMAP(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______,   RESET, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          TO_MNTR, TO_LPTP,   RESET, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
       _______, _______, _______,    MAIL, _______, TODOIST, _______, FIREFOX,   ITERM, _______, _______, _______, _______, _______, _______, _______, _______, \
       _______, _______,  SIGNAL, _______, _______, _______, _______, KC_MINS, _______, _______, _______, _______, _______, \
@@ -165,6 +171,51 @@ void matrix_init_user(void) {
 void matrix_scan_user(void) {
 
 };
+
+void delay(void) {
+    SEND_STRING(SS_DELAY(800));
+}
+
+void resize_window(char *resize_type) {
+    SEND_STRING(SS_DOWN(X_LGUI) SS_DOWN(X_LCTL) SS_DOWN(X_LSFT));
+    SEND_STRING(resize_type);
+    SEND_STRING(SS_UP(X_LGUI) SS_UP(X_LCTL) SS_UP(X_LSFT));
+    delay();
+}
+
+void put_on_monitor_in_position(char *position) {
+    SEND_STRING(SS_DOWN(X_LGUI) SS_DOWN(X_LCTL) SS_DOWN(X_LALT));
+    SEND_STRING(position);
+    SEND_STRING(SS_UP(X_LGUI) SS_UP(X_LCTL) SS_UP(X_LALT));
+    delay();
+}
+
+void switch_to_app(char *app) {
+    SEND_STRING(SS_LGUI(SS_TAP(X_SPACE)));
+    delay();
+    SEND_STRING(app);
+    delay();
+    SEND_STRING(SS_TAP(X_ENTER));
+    delay();
+}
+
+void switch_to_space(char *space) {
+    SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LALT));
+    SEND_STRING(space);
+    SEND_STRING(SS_UP(X_LCTL) SS_UP(X_LALT));
+    delay();
+}
+
+void move_to_monitor(char *app, char *position) {
+    switch_to_app(app);
+    put_on_monitor_in_position(position);
+}
+
+void move_to_laptop(char *app, char *space, char *position) {
+    switch_to_space(space);
+    switch_to_app(app);
+    resize_window(position);
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -249,6 +300,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_DELAY(200) "teams" SS_TAP(X_ENTER));
         SEND_STRING(SS_DELAY(200) SS_LGUI(SS_LSFT("m")));
         SEND_STRING(SS_DELAY(200) SS_LGUI(SS_TAP(X_TAB)));
+      }
+      return false;
+    case TO_MNTR:
+      if (record->event.pressed) {
+        move_to_monitor("todoist", "2");
+        move_to_monitor("notion", "3");
+        move_to_monitor("spotify", "4");
+        move_to_monitor("firefox", "7");
+        move_to_monitor("teams", "8");
+        move_to_monitor("signal", "9");
+      }
+      return false;
+    case TO_LPTP:
+      if (record->event.pressed) {
+        move_to_laptop("todoist", "2", FULL_SCREEN);
+        move_to_laptop("notion", "3", FULL_SCREEN);
+        move_to_laptop("spotify", "4", FULL_SCREEN);
+        move_to_laptop("firefox", "7", FULL_SCREEN);
+        move_to_laptop("teams", "9", LEFT_HALF);
+        move_to_laptop("signal", "9", RIGHT_HALF);
       }
       return false;
   }
