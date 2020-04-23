@@ -108,8 +108,8 @@ enum custom_keycodes {
   BRAVE,
   FIREFOX,
   ITERM,
-  MAIL,
   NOTION,
+  OUTLOOK,
   SIGNAL,
   SPOTIFY,
   TEAMS,
@@ -148,7 +148,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_APPS] = KEYMAP(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          TO_MNTR, TO_LPTP,   RESET, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______,    MAIL, _______, TODOIST, _______, FIREFOX,   ITERM, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______,   CHARS, _______, TODOIST, _______, FIREFOX,   ITERM, OUTLOOK, _______, _______, _______, _______, _______, _______, _______, \
       _______, _______,  SIGNAL, _______, _______, _______, _______, KC_MINS, _______, _______, _______, _______, _______, \
       _______, _______, _______,   TEAMS,  VMWARE,   BRAVE,  NOTION, SPOTIFY, _______, _______, _______, _______,                            _______, \
       _______, _______, _______,          SPC_APP,                   _______, _______, _______, _______,                            _______, _______, _______),
@@ -252,10 +252,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_DELAY(200) "iterm" SS_TAP(X_ENTER));
       }
       return false;
-    case MAIL:
+    case OUTLOOK:
       if (record->event.pressed) {
         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
-        SEND_STRING(SS_DELAY(200) "mail" SS_TAP(X_ENTER));
+        SEND_STRING(SS_DELAY(200) "outlook" SS_TAP(X_ENTER));
       }
       return false;
     case NOTION:
