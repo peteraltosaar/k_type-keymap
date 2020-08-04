@@ -117,7 +117,10 @@ enum custom_keycodes {
   VMWARE,
   MUTECHT,
   TO_MNTR,
-  TO_LPTP
+  TO_LPTP,
+  PLYPAUS,
+  PREVTRK,
+  NEXTTRK
 };
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -131,8 +134,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_ARROW] = KEYMAP(
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______,      PW, \
-      _______, _______, _______, _______, _______, _______, _______, _______,  ALT_UP,  ALT_UP, _______, _______, _______, _______,   VOLUP, KC_MPLY, KC_MSTP, \
-      _______, _______, _______,  KC_ENT, _______, _______, _______, D_EMAIL,   KC_UP, A_EMAIL, _______, _______, _______, _______, VOLDOWN, KC_MRWD, KC_MFFD, \
+      _______, _______, _______, _______, _______, _______, _______, _______,  ALT_UP,  ALT_UP, _______, _______, _______, _______,   VOLUP, PLYPAUS, KC_MSTP, \
+      _______, _______, _______,  KC_ENT, _______, _______, _______, D_EMAIL,   KC_UP, A_EMAIL, _______, _______, _______, _______, VOLDOWN, PREVTRK, NEXTTRK, \
       ARR_ESC, DW_LEFT, KC_BSPC,  KC_DEL, DW_RGHT, GUILEFT, ALTLEFT, KC_LEFT, KC_DOWN, KC_RGHT, ALTRGHT, GUIRGHT, _______, \
       _______, _______, _______, _______, _______, KC_HOME,  KC_END, ALT_DWN, ALT_DWN, SWTCSCR, _______, _______,                            KC_PGUP, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            KC_HOME, KC_PGDN, KC_END),
@@ -320,6 +323,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         move_to_laptop("firefox", "7", FULL_SCREEN);
         move_to_laptop("teams", "9", LEFT_HALF);
         move_to_laptop("signal", "9", RIGHT_HALF);
+      }
+      return false;
+    case PLYPAUS:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        SEND_STRING(SS_DELAY(200) "spotify" SS_DELAY(200) SS_TAP(X_ENTER));
+        SEND_STRING(SS_DELAY(200) SS_TAP(X_SPACE));
+        SEND_STRING(SS_DELAY(200) SS_LGUI(SS_TAP(X_TAB)));
+      }
+      return false;
+    case NEXTTRK:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        SEND_STRING(SS_DELAY(200) "spotify" SS_DELAY(200) SS_TAP(X_ENTER));
+        SEND_STRING(SS_DELAY(200) SS_LCTL(SS_LGUI(SS_TAP(X_RIGHT))));
+        SEND_STRING(SS_DELAY(200) SS_LGUI(SS_TAP(X_TAB)));
+      }
+      return false;
+    case PREVTRK:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+        SEND_STRING(SS_DELAY(200) "spotify" SS_DELAY(200) SS_TAP(X_ENTER));
+        SEND_STRING(SS_DELAY(200) SS_LCTL(SS_LGUI(SS_TAP(X_LEFT))));
+        SEND_STRING(SS_DELAY(200) SS_LGUI(SS_TAP(X_TAB)));
       }
       return false;
   }
