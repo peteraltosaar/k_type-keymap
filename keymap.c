@@ -1,4 +1,4 @@
-#include "k_type.h"
+#include QMK_KEYBOARD_H
 
 #define _______ KC_TRNS
 
@@ -7,17 +7,19 @@
 #define _INTELLIJ 2
 #define _APPS 3
 #define _WIN 4
+#define _UTILS 5
 
 #define ARROW MO(_ARROW)
 #define INTJ MO(_INTELLIJ)
 #define APPS MO(_APPS)
 #define WIN MO(_WIN)
+#define UTILS MO(_UTILS)
 
+#define TLD_UTL LT(UTILS, KC_GRV)
 #define ARR_ESC LT(ARROW, KC_ESC)
 #define INTJ_Z LT(INTJ, KC_Z)
 #define INTJ_F LT(INTJ, KC_F)
 #define INTJ_J LT(INTJ, KC_J)
-#define SPC_APP LT(APPS, KC_SPC)
 #define LOCKSCR LGUI(LCTL(KC_Q))
 #define SWTCSCR LGUI(LSFT(LCTL(KC_G)))
 #define ALTLEFT LALT(KC_LEFT)
@@ -89,6 +91,17 @@
 #define SET_BM8 LCTL(LSFT(LALT(KC_8)))
 #define SET_BM9 LCTL(LSFT(LALT(KC_9)))
 
+// Divvy Shortcuts
+#define TOPLEFT LCTL(LSFT(LGUI(KC_R)))
+#define TOP LCTL(LSFT(LGUI(KC_T)))
+#define TOPRGHT LCTL(LSFT(LGUI(KC_Y)))
+#define LEFT LCTL(LSFT(LGUI(KC_F)))
+#define FULLSCR LCTL(LSFT(LGUI(KC_G)))
+#define RIGHT LCTL(LSFT(LGUI(KC_H)))
+#define BOTLEFT LCTL(LSFT(LGUI(KC_V)))
+#define BOTTOM LCTL(LSFT(LGUI(KC_B)))
+#define BOTRGHT LCTL(LSFT(LGUI(KC_N)))
+
 // Media Keys
 
 #define VOLUP KC__VOLUP
@@ -104,40 +117,47 @@
 enum custom_keycodes {
   D_EMAIL = SAFE_RANGE,
   A_EMAIL,
-  PW,
+  STR1,
+  STR2,
   BRAVE,
+  DISCORD,
   FIREFOX,
   ITERM,
+  JOPLIN,
+  MESAGES,
   NOTION,
   OUTLOOK,
+  POCKET,
   SIGNAL,
+  SLACK,
   SPOTIFY,
   TEAMS,
+  TRMINAL,
   TODOIST,
-  VMWARE,
+  VIVALDI,
   MUTECHT,
   TO_MNTR,
   TO_LPTP
 };
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_QW] = KEYMAP(
+    [_QW] = LAYOUT_tkl_ansi(
       KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,           ADDTODO,   CHARS, LOCKSCR, \
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_INS,  MUTECHT, KC_PGUP, \
       TAB_WIN, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN, \
       ARR_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT, \
       KC_LSFT, INTJ_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,                            KC_UP, \
-      KC_LCTL, KC_LALT, KC_LGUI,          SPC_APP,                    KC_RALT, KC_RGUI,   INTJ,  KC_RCTL,                            KC_LEFT, KC_DOWN, KC_RGHT),
+      KC_LCTL, KC_LALT, KC_LGUI,           KC_SPC,                       APPS, KC_RGUI,   INTJ,  KC_RCTL,                            KC_LEFT, KC_DOWN, KC_RGHT),
 
-    [_ARROW] = KEYMAP(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______,      PW, \
+    [_ARROW] = LAYOUT_tkl_ansi(
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             STR1, _______,    STR2, \
       _______, _______, _______, _______, _______, _______, _______, _______,  ALT_UP,  ALT_UP, _______, _______, _______, _______,   VOLUP, KC_MPLY, KC_MSTP, \
       _______, _______, _______,  KC_ENT, _______, _______, _______, D_EMAIL,   KC_UP, A_EMAIL, _______, _______, _______, _______, VOLDOWN, KC_MRWD, KC_MFFD, \
       ARR_ESC, DW_LEFT, KC_BSPC,  KC_DEL, DW_RGHT, GUILEFT, ALTLEFT, KC_LEFT, KC_DOWN, KC_RGHT, ALTRGHT, GUIRGHT, _______, \
       _______, _______, _______, _______, _______, KC_HOME,  KC_END, ALT_DWN, ALT_DWN, SWTCSCR, _______, _______,                            KC_PGUP, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            KC_HOME, KC_PGDN, KC_END),
 
-    [_INTELLIJ] = KEYMAP(
+    [_INTELLIJ] = LAYOUT_tkl_ansi(
       _______, SET_BM1, SET_BM2, SET_BM3, SET_BM4, SET_BM5, SET_BM6, SET_BM7, SET_BM8, SET_BM9, SET_BM0, _______, _______,          _______, _______, _______, \
       _______, GOTOBM1, GOTOBM2, GOTOBM3, GOTOBM4, GOTOBM5, GOTOBM6, GOTOBM7, GOTOBM8, GOTOBM9, GOTOBM0, _______, _______, _______, _______, _______, _______, \
       _______,   CLOSE, _______,     END, REFACTR, GO2TEST, _______, _______, PREVMTD, OUTLINE, _______, _______, _______, _______, _______, _______, _______, \
@@ -145,21 +165,21 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______,  INTJ_Z, EXECUTE,  CREATE, EXT_VAR, SHOW_BM, FNDFILE,    MENU, FONT_DN, FONT_UP,    INFO, _______,                            PRVCHNG, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, NXTCHNG, _______),
 
-    [_APPS] = KEYMAP(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          TO_MNTR, TO_LPTP,   RESET, \
+    [_APPS] = LAYOUT_tkl_ansi(
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______,   RESET, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______,   CHARS, _______, TODOIST, _______, FIREFOX,   ITERM, OUTLOOK, _______, _______, _______, _______, _______, _______, _______, \
-      _______, _______,  SIGNAL, _______, _______, _______, _______, KC_MINS, _______, _______, _______, _______, _______, \
-      _______, _______, _______,   TEAMS,  VMWARE,   BRAVE,  NOTION, SPOTIFY, _______, _______, _______, _______,                            _______, \
-      _______, _______, _______,          SPC_APP,                   _______, _______, _______, _______,                            _______, _______, _______),
+      _______, _______, _______,   CHARS, _______, TODOIST, _______, TRMINAL,   ITERM, OUTLOOK,  POCKET, _______, _______, _______, _______, _______, _______, \
+      _______, MESAGES,  SIGNAL, DISCORD, FIREFOX, _______, _______,  JOPLIN,   SLACK, _______, _______, _______, _______, \
+      _______, _______, _______,   TEAMS, VIVALDI,   BRAVE,  NOTION, SPOTIFY, _______, _______, _______, _______,                            _______, \
+      _______, _______, _______,          _______,                      APPS, _______, _______, _______,                            _______, _______, _______),
 
-    [_WIN] = KEYMAP(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______,  ALT_UP,  ALT_UP, _______, _______, _______, _______, _______, _______, _______, \
-      TAB_WIN, _______, _______, _______, _______, _______, _______, _______,   KC_UP, _______, _______, _______, _______, _______, _______, _______, _______, \
-      _______, _______, _______, _______, _______, _______,  C_LEFT, KC_LEFT, KC_DOWN, KC_RGHT, C_RIGHT, _______, _______, \
-      _______, _______, _______, _______, _______, KC_HOME,  KC_END, ALT_DWN, ALT_DWN, _______, _______, _______,                            _______, \
-      _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, _______, _______),
+    [_UTILS] = LAYOUT_tkl_ansi(
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          TOPLEFT,     TOP, TOPRGHT, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,    LEFT, FULLSCR,   RIGHT, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, BOTLEFT,  BOTTOM, BOTRGHT, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                            _______, \
+      _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, _______, _______)
 };
 
 // Runs just one time when the keyboard initializes.
@@ -219,9 +239,14 @@ void move_to_laptop(char *app, char *space, char *position) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case PW:
+    case STR1:
       if (record->event.pressed) {
-        SEND_STRING("PW_PLACEHOLDER");
+        SEND_STRING("STR1_PLACEHOLDER");
+      }
+      return false;
+    case STR2:
+      if (record->event.pressed) {
+        SEND_STRING("STR2_PLACEHOLDER");
       }
       return false;
     case D_EMAIL:
@@ -240,6 +265,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_DELAY(200) "brave" SS_TAP(X_ENTER));
       }
       return false;
+    case DISCORD:
+      if (record->event.pressed) {
+         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+         SEND_STRING(SS_DELAY(200) "discord" SS_TAP(X_ENTER));
+      }
+      return false;
     case FIREFOX:
       if (record->event.pressed) {
         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
@@ -252,22 +283,46 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_DELAY(200) "iterm" SS_TAP(X_ENTER));
       }
       return false;
+    case JOPLIN:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+          SEND_STRING(SS_DELAY(200) "joplin" SS_TAP(X_ENTER));
+      }
+      return false;
+    case MESAGES:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+          SEND_STRING(SS_DELAY(200) "messages" SS_TAP(X_ENTER));
+      }
+      return false;
+    case NOTION:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+          SEND_STRING(SS_DELAY(200) "notion" SS_TAP(X_ENTER));
+      }
+      return false;
     case OUTLOOK:
       if (record->event.pressed) {
         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
         SEND_STRING(SS_DELAY(200) "outlook" SS_TAP(X_ENTER));
       }
       return false;
-    case NOTION:
+    case POCKET:
       if (record->event.pressed) {
-        SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
-        SEND_STRING(SS_DELAY(200) "notion" SS_TAP(X_ENTER));
+          SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+          SEND_STRING(SS_DELAY(200) "pocket" SS_TAP(X_ENTER));
       }
       return false;
     case SIGNAL:
       if (record->event.pressed) {
         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
         SEND_STRING(SS_DELAY(200) "signal" SS_TAP(X_ENTER));
+      }
+      return false;
+    case SLACK:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+          SEND_STRING(SS_DELAY(200) "slack" SS_TAP(X_ENTER));
       }
       return false;
     case SPOTIFY:
@@ -288,10 +343,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_DELAY(200) "todoist" SS_TAP(X_ENTER));
       }
       return false;
-    case VMWARE:
+    case TRMINAL:
+      if (record->event.pressed) {
+          SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
+          SEND_STRING(SS_DELAY(200) "terminal" SS_TAP(X_ENTER));
+      }
+      return false;
+    case VIVALDI:
       if (record->event.pressed) {
         SEND_STRING(SS_LALT(SS_TAP(X_SPACE)));
-        SEND_STRING(SS_DELAY(200) "vmware" SS_TAP(X_ENTER));
+        SEND_STRING(SS_DELAY(200) "vivaldi" SS_TAP(X_ENTER));
       }
       return false;
     case MUTECHT:
