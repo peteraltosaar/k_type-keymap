@@ -112,33 +112,35 @@
 #define RIGHT_HALF "h"
 
 enum custom_keycodes {
-  D_EMAIL = SAFE_RANGE,
-  A_EMAIL,
-  STR1,
-  STR2,
-  BRAVE,
-  DISCORD,
-  FIREFOX,
-  ITERM,
-  JOPLIN,
-  MESAGES,
-  NOTION,
-  OUTLOOK,
-  POCKET,
-  SIGNAL,
-  SLACK,
-  SPOTIFY,
-  TEAMS,
-  TRMINAL,
-  TODOIST,
-  VIVALDI,
-  MUTECHT,
-  TO_MNTR,
-  TO_LPTP,
-  PLYPAUS,
-  PREVTRK,
-  NEXTTRK
+    D_EMAIL = SAFE_RANGE,
+    A_EMAIL,
+    STR1,
+    STR2,
+    BRAVE,
+    DISCORD,
+    FIREFOX,
+    ITERM,
+    JOPLIN,
+    MESAGES,
+    NOTION,
+    OUTLOOK,
+    POCKET,
+    SIGNAL,
+    SLACK,
+    SPOTIFY,
+    TEAMS,
+    TRMINAL,
+    TODOIST,
+    VIVALDI,
+    MUTECHT,
+    TO_MNTR,
+    TO_LPTP,
+    PLYPAUS,
+    PREVTRK,
+    NEXTTRK
 };
+
+// @formatter:off
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QW] = LAYOUT_tkl_ansi(
@@ -181,6 +183,8 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                            _______, \
       _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, _______, _______)
 };
+
+// @formatter:off
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
