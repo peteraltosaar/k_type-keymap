@@ -6,13 +6,11 @@
 #define _ARROW 1
 #define _INTELLIJ 2
 #define _APPS 3
-#define _WIN 4
-#define _UTILS 5
+#define _UTILS 4
 
 #define ARROW MO(_ARROW)
 #define INTJ MO(_INTELLIJ)
 #define APPS MO(_APPS)
-#define WIN MO(_WIN)
 #define UTILS MO(_UTILS)
 
 #define TLD_UTL LT(UTILS, KC_GRV)
@@ -31,7 +29,6 @@
 #define DW_LEFT LALT(KC_BSPC)
 #define DW_RGHT LALT(KC_DEL)
 
-#define TAB_WIN LT(WIN, KC_TAB)
 #define C_LEFT LCTL(KC_LEFT)
 #define C_RIGHT LCTL(KC_RIGHT)
 
@@ -147,7 +144,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QW] = LAYOUT_tkl_ansi(
       KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,           ADDTODO,   CHARS, LOCKSCR, \
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_INS,  MUTECHT, KC_PGUP, \
-      TAB_WIN, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN, \
+      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN, \
       ARR_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT, \
       KC_LSFT, INTJ_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,                            KC_UP, \
       KC_LCTL, KC_LALT, KC_LGUI,           KC_SPC,                       APPS, KC_RGUI,   INTJ,  KC_RCTL,                            KC_LEFT, KC_DOWN, KC_RGHT),
