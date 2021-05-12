@@ -7,17 +7,19 @@
 #define _INTELLIJ 2
 #define _APPS 3
 #define _UTILS 4
+#define _NAV 5
 
 #define ARROW MO(_ARROW)
 #define INTJ MO(_INTELLIJ)
 #define APPS MO(_APPS)
 #define UTILS MO(_UTILS)
+#define NAV MO(_NAV)
 
 #define TLD_UTL LT(UTILS, KC_GRV)
 #define ARR_ESC LT(ARROW, KC_ESC)
 #define INTJ_Z LT(INTJ, KC_Z)
-#define INTJ_F LT(INTJ, KC_F)
-#define INTJ_J LT(INTJ, KC_J)
+#define F_NAV LT(NAV, KC_F)
+
 #define LOCKSCR LGUI(LCTL(KC_Q))
 #define SWTCSCR LGUI(LSFT(LCTL(KC_G)))
 #define ALTLEFT LALT(KC_LEFT)
@@ -145,9 +147,9 @@ enum custom_keycodes {
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QW] = LAYOUT_tkl_ansi(
       KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,           ADDTODO,   CHARS, LOCKSCR, \
-      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_INS,  MUTECHT, KC_PGUP, \
+     TLD_UTL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_INS,  MUTECHT, KC_PGUP, \
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_DEL,  KC_END,  KC_PGDN, \
-      ARR_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT, \
+      ARR_ESC, KC_A,    KC_S,    KC_D,   F_NAV,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT, \
       KC_LSFT, INTJ_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,                            KC_UP, \
       KC_LCTL, KC_LALT, KC_LGUI,           KC_SPC,                       APPS, KC_RGUI,   INTJ,  KC_RCTL,                            KC_LEFT, KC_DOWN, KC_RGHT),
 
@@ -181,7 +183,15 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, BOTLEFT,  BOTTOM, BOTRGHT, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                            _______, \
-      _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, _______, _______)
+      _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, _______, _______),
+
+    [_NAV] = LAYOUT_tkl_ansi(
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______,  ALT_UP, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, _______,   KC_UP, _______, _______, _______, _______, _______, _______, _______, _______, \
+      _______, _______, _______, _______,   F_NAV, _______, ALTLEFT, KC_LEFT, KC_DOWN, KC_RGHT, ALTRGHT, _______, _______, \
+      _______, _______, _______, _______, _______, _______, _______, GUILEFT, ALT_DWN, GUIRGHT, _______, _______,                            _______, \
+      _______, _______, _______,          _______,                   _______, _______, _______, _______,                            _______, _______, _______),
 };
 
 // @formatter:off
