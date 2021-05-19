@@ -11,6 +11,6 @@ cd ../qmk_firmware
 sed -i '' 's/STR1_PLACEHOLDER/'$string1'/g' keyboards/k_type/keymaps/peteraltosaar/keymap.c
 sed -i '' 's/STR2_PLACEHOLDER/'$string2'/g' keyboards/k_type/keymaps/peteraltosaar/keymap.c
 make k_type:peteraltosaar
-rm keyboards/planck/keymaps/peteraltosaar/keymap.c
+rm keyboards/k_type/keymaps/peteraltosaar/keymap.c
 cd -
 cp ../qmk_firmware/k_type_peteraltosaar.bin .
